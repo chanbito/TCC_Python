@@ -299,7 +299,8 @@ textarea {
     cursor: pointer;
     overflow: -moz-hidden-unscrollable;
     -webkit-transition: .2s linear;
-    transition: .2s linear
+    transition: .2s linear;
+    width: 10px;
 }
 
 .file-group input[type="file"] {
