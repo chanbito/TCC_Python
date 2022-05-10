@@ -5,8 +5,6 @@ from ..models import message
 from ..form import messageForm
 from decouple import config
 
-openai.api_key = os.getenv(config("OPENAI_API_KEY"))
-
 start_sequence = "\nAI:"
 restart_sequence = "\nHuman: "
 
@@ -24,8 +22,10 @@ def Interation(token):
 
     logging.warning(prompt)
 
-    #openai.api_key = os.getenv('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')
     openai.api_key = config("OPENAI_API_KEY")
+
+    logging.error('promp' + prompt)
+
 
     ret = openai.Completion.create(
         engine="text-davinci-002",
@@ -37,7 +37,10 @@ def Interation(token):
         presence_penalty=0.0,
         stop=[" Human:", " AI:"]
     )
-    msg = ret['choices'][0]['text']
+
+    logging.error(ret)
+
+    msg = ret['choices'][0]['text'][5:]
 
     data = {
         'mensagem' : msg,

@@ -3,9 +3,11 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from .form import messageForm
+from .models import message
 import logging
 import secrets
 from .IA import OpenIA
+import asyncio
 
 # Create your views here.
 
@@ -20,20 +22,12 @@ def home(request,token=''):
 
 def returning(request,data):
     if request.method == 'POST':
-        template_name ='core/home.html'
-        
         msgForm = OpenIA.Interation(data['token'])
         logging.warning(msgForm)
-        context = { 
-            'token': data['token'],
-            'mensagem': data
-        }
-        # return render(request, template_name, context)
-        index_path = reverse('core:home')
-        return HttpResponseRedirect(index_path)
+        return msgForm
 
 def sending(request):
-    template_name ='core/home.html'
+    template_name = 'core/home.html'
     context = {}
     if request.method == 'POST':
         logging.warning(request.POST)
@@ -49,10 +43,11 @@ def sending(request):
         form = messageForm(data)
         if form.is_valid():
             form.save()
-            # return redirect('core:returning',data)
-            return returning(data=data,request=request)
-
-    return render(request, template_name, context)
+            returning(data=data,request=request)
+            messageobj = message.objects.filter(token=token).values('mensagem','is_human')
+            context['token'] = token
+            context['mensagens'] = messageobj
+        return render(request, template_name, context)
 
 def home(request):
     template_name ='core/home.html'
