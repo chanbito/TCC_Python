@@ -60,12 +60,3 @@ def home(request):
         'token' : secrets.token_hex(16)
     }
     return render(request, template_name, context)
-
-def render_message(request, data):
-    #aqui teremos que renderizar a nova tela com a mensagem
-    template_name ='core/home.html'
-    context = {
-        'token' : secrets.token_hex(16)
-    }
-    return render(request, template_name, context)
-    
