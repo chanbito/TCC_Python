@@ -1,1 +1,2 @@
-web: python manage.py runserver 0.0.0.0
+release: python manage.py migrate
+web: gunicorn verbify.wsgi --preload --log-file -
