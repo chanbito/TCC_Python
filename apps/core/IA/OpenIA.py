@@ -1,3 +1,4 @@
+from ctypes import sizeof
 import os
 import logging
 import openai
@@ -40,10 +41,10 @@ def Interation(token):
 
     logging.error(ret)
 
-    msg = ret['choices'][0]['text'][5:]
-
+    msg = ret['choices'][0]['text'].split(':')
+    logging.error(msg)
     data = {
-        'mensagem' : msg,
+        'mensagem' : msg[len(msg)-1],
         'token' : token,
         'is_human' : False 
     }

@@ -1,19 +1,18 @@
-from wsgiref.util import request_uri
-from django.shortcuts import render, redirect
-from django.http import HttpResponseRedirect
-from django.urls import reverse
+from django.shortcuts import render
 from .form import messageForm
 from .models import message
 import logging
 import secrets
 from .IA import OpenIA
-import asyncio
 
 # Create your views here.
 
-def home(request,token=''):
+def home(request,token):
     template_name ='core/home.html'
-    if not request['token']:
+    # if not request['token']:
+    #     token = secrets.token_hex(16)
+    logging.warning(token)
+    if token == "":
         token = secrets.token_hex(16)
     context = {
         'token': token
@@ -47,7 +46,7 @@ def sending(request):
             messageobj = message.objects.filter(token=token).values('mensagem','is_human')
             context['token'] = token
             context['mensagens'] = messageobj
-        return render(request, template_name, context)
+    return render(request, template_name, context)
 
 def home(request):
     template_name ='core/home.html'
@@ -55,3 +54,22 @@ def home(request):
         'token' : secrets.token_hex(16)
     }
     return render(request, template_name, context)
+
+def translater(mensagem):
+    template_name = 'core/home.html'
+    context = {}
+    logging.warning(mensagem)
+    msg = GoogleTranslator.translate_text(mensagem)
+    logging.warning(msg)
+    
+    #return msg
+    return render('request', template_name, context)
+
+    #   context = {}
+    # logging.warning(mensagem)
+    # msg = GoogleTranslator.translate_text(mensagem)
+    # logging.warning(msg)
+    # context['trad'] = msg
+    # #return  context
+    # return render(request,'NULL',context)
+    # #return JSONEncoder(msg)

@@ -35,10 +35,10 @@
                             </div>
                                 <div class="publisher bt-1 border-light"> <img class="avatar avatar-xs" src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="...">
                                 <form action="{% url 'core:send' %}" method="post" enctype="multipart/form-data">
+                                <input class="publisher-input" type="text"  required="required" placeholder="Write something" name="mensagem">
                                 <input class="publisher-input" type="text" name="token" value="{{token}}" style="display: none;">
-                                <input class="publisher-input" type="checkbox" for="id_is_human" name="is_human" id="id_is_human" style="display: none;" value="{{is_human}}">  
-                                <input class="publisher-input" type="text"  required="required" placeholder="Write something" name="mensagem"> 
-                                <button class="btn btn-lg btn-primary" src="https://img.icons8.com/color/50/000000/paper-plane.png" type="submit" data-abc="true" href="#" ></button>
+                                <input class="publisher-input" type="checkbox" for="id_is_human" name="is_human" id="id_is_human" style="display: none;" value="{{is_human}}">
+                                <button class="btn btn-lg btn-primary" src="https://img.icons8.com/color/50/000000/paper-plane.png" type="submit" data-abc="true" href="#" ><p>Enviar</p></button>
                             </form>
                         </div>
                     </div>
@@ -50,6 +50,7 @@
     <script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
     <script src="{% static 'js/jquery.mask.min.js' %}"></script>
     <script src="{% static 'js/jquery-ui.js' %}"></script>
+    <script src="{% static 'js/CallTradutor.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/scrollbar.js' %}"></script>
 </body>

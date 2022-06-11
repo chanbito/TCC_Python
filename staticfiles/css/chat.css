@@ -14,7 +14,7 @@ html{
 .card {
     border: 0;
     border-radius: 0px;
-    margin-bottom: 30px;
+    margin-bottom: 0px;
     -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.03);
     box-shadow: 0 2px 3px rgba(0, 0, 0, 0.03);
     -webkit-transition: .5s;
@@ -206,6 +206,11 @@ h4.card-title {
     flex-direction: row-reverse
 }
 
+.media-chat.media-chat-reverse.button {
+    -webkit-box-direction: reverse;
+    flex-direction: row-reverse
+}
+
 .media-chat {
     padding-right: 64px;
     margin-bottom: 0
@@ -255,7 +260,7 @@ h4.card-title {
 }
 
 .publisher>* {
-    margin: 0 8px
+    margin: 0 8px;
 }
 
 .publisher-input {
@@ -313,3 +318,17 @@ textarea {
 .text-info {
     color: #48b0f7 !important
 }
+
+div button{
+    margin-top: 0%;
+    padding-top: -10%;
+    border-radius: 100%;
+    border-style: none;
+    background-color: transparent;
+}
+
+div button img{
+    width: 100%;
+    max-width: 15px;
+}
+

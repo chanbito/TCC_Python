@@ -10,13 +10,19 @@
     <div class="media media-chat">
         <div class="media-body">
             <p>{{mensagem.mensagem}}</p>
+            <button id="button-mensagem" onclick='traduzir("{{mensagem.mensagem}}")'>
+                <img  src="https://cdn-icons-png.flaticon.com/512/281/281742.png">
+            </button>
         </div>
     </div>
 {% endif %}
 {%if mensagem.is_human == True%}
     <div class="media media-chat media-chat-reverse">
     <div class="media-body">
-        <p>{{mensagem.mensagem}}</p>
+        <p>{{mensagem.mensagem}}</p><br>
+        <button id="button-mensagem" onclick='traduzir("{{mensagem.mensagem}}")'>
+            <img  src="https://cdn-icons-png.flaticon.com/512/281/281742.png">
+        </button>
     </div>
 </div>
 {% endif %}
